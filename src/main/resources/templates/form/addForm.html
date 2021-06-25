@@ -39,14 +39,25 @@
         <div>판매 여부</div>
         <div>
             <div class="form-check">
-<!--                체크박스를 선택하면 잘 넘어가는데 선택 안하면 아예 안넘어가기때문에-->
-<!--                존재 자체를 모르게 되서 hidden type 으로 이렇게 넣어주는 트릭을 사용 할 수 있다.-->
-<!--                <input type="checkbox" id="open" name="open" class="form-check-input">-->
-<!--                <input type="hidden" name="_open" value="on">-->
+                <!--                체크박스를 선택하면 잘 넘어가는데 선택 안하면 아예 안넘어가기때문에-->
+                <!--                존재 자체를 모르게 되서 hidden type 으로 이렇게 넣어주는 트릭을 사용 할 수 있다.-->
+                <!--                <input type="checkbox" id="open" name="open" class="form-check-input">-->
+                <!--                <input type="hidden" name="_open" value="on">-->
 
-<!--                thymeleaf 에서 이렇게 지정하면 자동으로 생성 해 준다-->
+                <!--                thymeleaf 에서 이렇게 지정하면 자동으로 생성 해 준다-->
                 <input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
                 <label for="open" class="form-check-label">판매 오픈</label>
+            </div>
+        </div>
+
+        <!-- multi checkbox -->
+        <div>
+            <div>등록 지역</div>
+            <div th:each="region : ${regions}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="*{regions}" th:value="${region.key}"
+                       class="form-check-input">
+                <label th:for="${#ids.prev('regions')}"
+                       th:text="${region.value}" class="form-check-label">서울</label>
             </div>
         </div>
 
